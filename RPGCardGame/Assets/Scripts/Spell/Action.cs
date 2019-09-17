@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-public class SpellNode : Node {
-
-	[Input] public int Cost;
-	[Input] public string Description;
+public abstract class Action : Node
+{
+	[Input] public Action Previous;
 	[Output] public Action Next;
 
-	public void GoNext()
+	public abstract void ExecuteAction();
+
+	public void Finish()
 	{
 		NodePort nextPort;
 		nextPort = GetOutputPort("Next");
@@ -18,10 +19,5 @@ public class SpellNode : Node {
 			NodePort connection = nextPort.GetConnection(i);
 			(connection.node as Action).ExecuteAction();
 		}
-	}
-
-	public override object GetValue(NodePort port)
-	{
-		return base.GetValue(port);
 	}
 }

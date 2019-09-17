@@ -5,6 +5,12 @@ using XNode;
 
 public abstract class TargetType : Node {
 
-	[Output] public List<Character> Targets;
-
+	public enum Type { Friendly, Enemy, All }
+	
+	[Output] public List<Entity> Targets;
+	[Input] public Type Limit;
+	public override object GetValue(NodePort port)
+	{
+		return base.GetValue(port);
+	}
 }
