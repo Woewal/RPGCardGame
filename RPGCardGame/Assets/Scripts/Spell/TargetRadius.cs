@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using XNode;
 
-public class TargetSelf : TargetType
+public class TargetRadius : TargetType
 {
+	[Input] public float Radius;
+
 	public override List<Entity> GetEntities()
 	{
 		throw new System.NotImplementedException();

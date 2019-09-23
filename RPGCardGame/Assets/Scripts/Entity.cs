@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public Health Health;
+	public Character Character;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	void Start()
+	{
+		Health = GetComponent<Health>();
+		Character = GetComponent<Character>();
+	}
 }

@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2350363873641795789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed9b863c2b74914c9cfe4a99b20a816, type: 3}
+  m_Name: Target All
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -440, y: -56}
+  ports:
+    keys:
+    - Targets
+    values:
+    - _fieldName: Targets
+      _node: {fileID: -2350363873641795789}
+      _typeQualifiedName: System.Collections.Generic.List`1[[Entity, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Targets
+        node: {fileID: 44061295678833177}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Targets: []
 --- !u!114 &-1973165329677998489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,28 +45,18 @@ MonoBehaviour:
   m_Name: Spell
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -440, y: -168}
+  position: {x: -376, y: -232}
   ports:
     keys:
-    - Description
-    - Cost
+    - CastInfo
     - Next
     values:
-    - _fieldName: Description
+    - _fieldName: CastInfo
       _node: {fileID: -1973165329677998489}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
+      _typeQualifiedName: CastInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
       connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: Cost
-      _node: {fileID: -1973165329677998489}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
+      _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
@@ -44,14 +66,12 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: Previous
-        node: {fileID: 6466835233176655025}
+        node: {fileID: 44061295678833177}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  Cost: 30
-  Description: Basic fireball
   Next: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -67,11 +87,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -1973165329677998489}
-  - {fileID: 6466835233176655025}
-  - {fileID: 2204147513289091709}
-  - {fileID: 1863401401610741785}
-  - {fileID: 3271295530665741616}
---- !u!114 &1863401401610741785
+  - {fileID: -2350363873641795789}
+  - {fileID: 44061295678833177}
+--- !u!114 &44061295678833177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,197 +98,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b9bab3745c935847b0e82035e81c5b7, type: 3}
-  m_Name: Damage
-  m_EditorClassIdentifier: 
+  m_Script: {fileID: 0}
+  m_Name: Change Health
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeHealth
   graph: {fileID: 11400000}
-  position: {x: 72, y: -168}
+  position: {x: 72, y: -152}
   ports:
     keys:
+    - Amount
     - Targets
     - Previous
     - Next
     values:
-    - _fieldName: Targets
-      _node: {fileID: 1863401401610741785}
-      _typeQualifiedName: System.Collections.Generic.List`1[[Entity, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: Targets
-        node: {fileID: 2204147513289091709}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: Previous
-      _node: {fileID: 1863401401610741785}
-      _typeQualifiedName: Action, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: Next
-        node: {fileID: 6466835233176655025}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: Next
-      _node: {fileID: 1863401401610741785}
-      _typeQualifiedName: Action, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: Previous
-        node: {fileID: 3271295530665741616}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  Previous: {fileID: 0}
-  Next: {fileID: 0}
-  Targets: []
---- !u!114 &2204147513289091709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed9b863c2b74914c9cfe4a99b20a816, type: 3}
-  m_Name: Target All
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -424, y: 8}
-  ports:
-    keys:
-    - Targets
-    - Limit
-    values:
-    - _fieldName: Targets
-      _node: {fileID: 2204147513289091709}
-      _typeQualifiedName: System.Collections.Generic.List`1[[Entity, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: Targets
-        node: {fileID: 6466835233176655025}
-        reroutePoints: []
-      - fieldName: Targets
-        node: {fileID: 1863401401610741785}
-        reroutePoints: []
-      - fieldName: Targets
-        node: {fileID: 3271295530665741616}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: Limit
-      _node: {fileID: 2204147513289091709}
-      _typeQualifiedName: TargetType+Type, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+    - _fieldName: Amount
+      _node: {fileID: 44061295678833177}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  Targets: []
-  Limit: 2
---- !u!114 &3271295530665741616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b9bab3745c935847b0e82035e81c5b7, type: 3}
-  m_Name: Damage
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 312, y: -168}
-  ports:
-    keys:
-    - Targets
-    - Previous
-    - Next
-    values:
     - _fieldName: Targets
-      _node: {fileID: 3271295530665741616}
+      _node: {fileID: 44061295678833177}
       _typeQualifiedName: System.Collections.Generic.List`1[[Entity, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: Targets
-        node: {fileID: 2204147513289091709}
+        node: {fileID: -2350363873641795789}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: Previous
-      _node: {fileID: 3271295530665741616}
-      _typeQualifiedName: Action, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: Next
-        node: {fileID: 1863401401610741785}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: Next
-      _node: {fileID: 3271295530665741616}
-      _typeQualifiedName: Action, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  Previous: {fileID: 0}
-  Next: {fileID: 0}
-  Targets: []
---- !u!114 &6466835233176655025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b9bab3745c935847b0e82035e81c5b7, type: 3}
-  m_Name: Damage
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -184, y: -168}
-  ports:
-    keys:
-    - Next
-    - Previous
-    - Targets
-    values:
-    - _fieldName: Next
-      _node: {fileID: 6466835233176655025}
-      _typeQualifiedName: Action, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: Previous
-        node: {fileID: 1863401401610741785}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: Previous
-      _node: {fileID: 6466835233176655025}
+      _node: {fileID: 44061295678833177}
       _typeQualifiedName: Action, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
@@ -281,19 +144,16 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: Targets
-      _node: {fileID: 6466835233176655025}
-      _typeQualifiedName: System.Collections.Generic.List`1[[Entity, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: Targets
-        node: {fileID: 2204147513289091709}
-        reroutePoints: []
-      _direction: 0
+    - _fieldName: Next
+      _node: {fileID: 44061295678833177}
+      _typeQualifiedName: Action, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
   Previous: {fileID: 0}
   Next: {fileID: 0}
   Targets: []
+  Amount: -10

@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using XNode;
+using System.Linq;
 
 public abstract class TargetType : Node {
-
-	public enum Type { Friendly, Enemy, All }
 	
 	[Output] public List<Entity> Targets;
-	[Input] public Type Limit;
+
 	public override object GetValue(NodePort port)
 	{
-		return base.GetValue(port);
+		if (port.fieldName == "Targets")
+		{
+			return GetEntities();
+		}
+
+		return null;
 	}
+
+	public abstract List<Entity> GetEntities();
 }

@@ -5,9 +5,8 @@ using XNode;
 
 public class SpellNode : Node {
 
-	[Input] public int Cost;
-	[Input] public string Description;
 	[Output] public Action Next;
+	[Output] public CastInfo CastInfo;
 
 	public void GoNext()
 	{
