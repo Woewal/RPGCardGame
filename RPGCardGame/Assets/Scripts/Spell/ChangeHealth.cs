@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XNode;
@@ -7,9 +8,10 @@ public class ChangeHealth : TargetAction
 {
 	[Input] public int Amount;
 
+	NetworkManager test;
+
 	public override void ExecuteAction()
 	{
-
 		var targets = GetInputValue("Targets", this.Targets);
 
 		for (int i = 0; i < targets.Count; i++)
