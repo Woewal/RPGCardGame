@@ -10,10 +10,12 @@ public class PlayerSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		for (int i = 0; i < NetworkServer.connections.Count; i++)
+		Debug.Log(NetworkServer.connections.Count);
+
+		foreach(var entry in NetworkServer.connections)
 		{
 			var player = Instantiate(PlayerPrefab);
-			NetworkServer.SpawnWithClientAuthority(player, NetworkServer.connections[i].playerController);
+			NetworkServer.SpawnWithClientAuthority(player, entry.Value);
 		}
     }
 }

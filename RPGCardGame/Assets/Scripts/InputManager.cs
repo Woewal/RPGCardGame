@@ -1,30 +1,47 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManager : NetworkBehaviour
 {
-	Camera camera;
-	Plane plane = new Plane(new Vector3(0, 1, 0), 0);
 
-	public void Update()
+	[Command]
+	void CmdProcessInput(int horizontal, int vertical)
 	{
-		if (Input.GetMouseButtonDown(0))
-			Cast();
+		CursorManager.Instance.Test(horizontal, vertical);
 	}
 
-	public Vector3? Cast()
+	void Start()
 	{
-		var screenPosition = Input.mousePosition;
-		Ray ray = Camera.main.ScreenPointToRay(screenPosition);
-		float enter = 0;
+		if (!hasAuthority) return;
+		StartCoroutine(StartUpdating());
+	}
 
-		if(plane.Raycast(ray, out enter))
+	void Update()
+	{
+		if (!hasAuthority) return;
+
+		if (Input.GetKeyDown(KeyCode.W))
+			transform.Translate(Vector3.forward);
+
+		if (Input.GetKeyDown(KeyCode.A))
+			transform.Translate(Vector3.left);
+
+		if (Input.GetKeyDown(KeyCode.D))
+			transform.Translate(Vector3.right);
+
+		if (Input.GetKeyDown(KeyCode.S))
+			transform.Translate(Vector3.back);
+	}
+
+	IEnumerator StartUpdating()
+	{
+		while (true)
 		{
-			Vector3 hitPoint = ray.GetPoint(enter);
-			return hitPoint;
-		}
+			CmdProcessInput((int)transform.position.x, (int)transform.position.z);
+			yield return new WaitForSeconds(1);
 
-		return null;
+		}
 	}
 }

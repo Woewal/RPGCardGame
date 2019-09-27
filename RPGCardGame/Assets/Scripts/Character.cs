@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
 
 	public Spell Spell;
 
-	public InputManager InputManager;
+	public CursorManager InputManager;
 
 	public void Update()
 	{
