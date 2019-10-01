@@ -6,6 +6,7 @@ public class Entity : MonoBehaviour
 {
 	public Health Health;
 	public Character Character;
+	public Rigidbody Rigidbody;
 
 	void Start()
 	{

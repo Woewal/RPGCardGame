@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Target All
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -440, y: -56}
+  position: {x: -344, y: -104}
   ports:
     keys:
     - Targets
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: Spell
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -376, y: -232}
+  position: {x: -328, y: -184}
   ports:
     keys:
     - CastInfo

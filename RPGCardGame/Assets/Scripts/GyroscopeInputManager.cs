@@ -1,50 +1,62 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GyroscopeInputManager : MonoBehaviour
+public class GyroscopeInputManager : NetworkBehaviour
 {
-	public Text Text;
-	public GameObject RotationObject;
-	public RectTransform Cursor;
 	public Slider slider;
 
 	Quaternion originalRotation = Quaternion.identity;
 
-	double sensitivity = 2;
+	int id;
 
-	void Update()
+	double sensitivity = 40;
+
+	void Start()
 	{
-		Text.text = "";
-		sensitivity = slider.value;
+		if (!hasAuthority) return;
 
-		if (Input.touchCount > 0)
-			originalRotation = GyroToUnity(Input.gyro.attitude);
+		id = (int)GetComponent<NetworkIdentity>().netId;
+		CmdRegisterPlayer();
+		StartCoroutine(UpdateCursorPositionCoroutine());
+	}
 
-		if (originalRotation == Quaternion.identity && !SystemInfo.supportsGyroscope)
-		{
-			Text.text = "Set rotation";
-			return;
-		}
+	[Command]
+	void CmdRegisterPlayer()
+	{
+		Debug.Log("Registered player");
+		CursorManager.Instance.RegisterPlayer(id);
+	}
 
-		if (SystemInfo.supportsGyroscope)
+	IEnumerator UpdateCursorPositionCoroutine()
+	{
+		while(true)
 		{
-			Input.gyro.enabled = true;
-			var rotation = GyroToUnity(Input.gyro.attitude);
-			RotationObject.transform.rotation = rotation;
-			Quaternion relative = Quaternion.Inverse(rotation) * originalRotation;
-			Text.text += rotation.ToString();
-			Text.text += " - ";
-			Text.text += relative.eulerAngles.ToString();
-			Text.text += " - ";
-			Text.text += string.Format("Horizontal: {0}, Vertical: {1}", GetRelativeAngle(relative.eulerAngles.z), GetRelativeAngle(relative.eulerAngles.x));
-			ChangeCursorPosition(GetRelativeAngle(relative.eulerAngles.z), GetRelativeAngle(relative.eulerAngles.x));
-		}
-		else
-		{
-			Text.text = "No gyro";
-			ChangeCursorPosition(Input.mousePosition.x, Input.mousePosition.y);
+			//sensitivity = slider.value;
+
+			if (Input.touchCount > 0)
+				originalRotation = GyroToUnity(Input.gyro.attitude);
+
+			if (originalRotation == Quaternion.identity && !SystemInfo.supportsGyroscope)
+			{
+				yield return null;
+			}
+
+			if (SystemInfo.supportsGyroscope)
+			{
+				Input.gyro.enabled = true;
+				var rotation = GyroToUnity(Input.gyro.attitude);
+				Quaternion relative = Quaternion.Inverse(rotation) * originalRotation;
+				CmdChangeCursorPosition(GetRelativeAngle(relative.eulerAngles.z), GetRelativeAngle(relative.eulerAngles.x));
+			}
+			else
+			{
+				CmdChangeCursorPosition(Input.mousePosition.x, Input.mousePosition.y);
+			}
+
+			yield return new WaitForSeconds(.005f);
 		}
 	}
 
@@ -58,10 +70,13 @@ public class GyroscopeInputManager : MonoBehaviour
 		sensitivity = amount;
 	}
 
-	public void ChangeCursorPosition(float horizontal, float vertical)
+	[Command]
+	public void CmdChangeCursorPosition(float horizontal, float vertical)
 	{
-		Cursor.transform.position = new Vector3(Screen.width / 2 + horizontal * (float)sensitivity, Screen.height / 2 + vertical * (float)sensitivity);
-		Debug.Log(Cursor.transform.position);
+		var horizontalReal = horizontal * (float)sensitivity;
+		var verticalReal = vertical * (float)sensitivity;
+
+		CursorManager.Instance.MoveCursor(id, horizontalReal, verticalReal);
 	}
 
 	float GetRelativeAngle(float relativeAngle)

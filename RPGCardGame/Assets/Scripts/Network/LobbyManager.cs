@@ -13,6 +13,12 @@ public class LobbyManager : MonoBehaviour
 		};
 	}
 
+	void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.E) || Input.touchCount > 0)
+			Debug.Log(NetworkManager.singleton.networkAddress);	
+	}
+
 	public void Host()
 	{
 		var manager = NetworkManager.singleton;

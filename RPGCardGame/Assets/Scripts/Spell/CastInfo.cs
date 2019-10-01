@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class CastInfo
 {
 	public Vector3 FromPosition;

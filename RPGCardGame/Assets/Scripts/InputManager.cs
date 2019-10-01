@@ -9,7 +9,7 @@ public class InputManager : NetworkBehaviour
 	[Command]
 	void CmdProcessInput(int horizontal, int vertical)
 	{
-		CursorManager.Instance.Test(horizontal, vertical);
+
 	}
 
 	void Start()

@@ -8,10 +8,19 @@ public class CursorManager : MonoBehaviour
 
 	Camera camera;
 	Plane plane = new Plane(new Vector3(0, 1, 0), 0);
+	public Cursor CursorPrefab;
+	public RectTransform CursorParent;
+	public Dictionary<int, Cursor> Cursors = new Dictionary<int, Cursor>();
 
 	void Awake()
 	{
 		Instance = this;	
+	}
+
+	public void RegisterPlayer(int id)
+	{
+		var cursor = Instantiate(CursorPrefab, CursorParent);
+		Cursors.Add(id, cursor);
 	}
 
 	public void Update()
@@ -20,11 +29,10 @@ public class CursorManager : MonoBehaviour
 			Cast();
 	}
 
-	public void Test(int horizontal, int vertical)
+	public void MoveCursor(int id, float horizontal, float vertical)
 	{
-		Debug.Log(horizontal);
-		Debug.Log(vertical);
-
+		var cursor = Cursors[id];
+		cursor.TargetPosition = new Vector3(Screen.width / 2 + horizontal, Screen.height / 2 + vertical);
 	}
 
 	public Vector3? Cast()

@@ -14,8 +14,16 @@ public class PlayerSpawner : MonoBehaviour
 
 		foreach(var entry in NetworkServer.connections)
 		{
-			var player = Instantiate(PlayerPrefab);
-			NetworkServer.SpawnWithClientAuthority(player, entry.Value);
+			StartCoroutine(WaitForReady(entry.Value));
 		}
     }
+
+	IEnumerator WaitForReady(NetworkConnection networkConnection)
+	{
+		while (!networkConnection.isReady)
+			yield return null;
+
+		var player = Instantiate(PlayerPrefab);
+		NetworkServer.SpawnWithClientAuthority(player, networkConnection);
+	}
 }
