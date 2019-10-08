@@ -3,14 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class LobbyManager : MonoBehaviour
+public class LobbyManager : NetworkBehaviour
 {
+
+	public int playersConnected;
+
 	void Start()
 	{
 		NetworkDiscovery.onReceivedServerResponse += (NetworkDiscovery.DiscoveryInfo info) =>
 		{
 			Debug.Log(info);
 		};
+
+		NetworkServer.RegisterHandler<ConnectMessage>(OnConnected);
+
+	}
+
+	void OnConnected(NetworkConnection conn, ConnectMessage message)
+	{
+		Debug.Log("Client connected");
 	}
 
 	void Update()

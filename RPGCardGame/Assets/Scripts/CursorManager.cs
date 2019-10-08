@@ -23,21 +23,22 @@ public class CursorManager : MonoBehaviour
 		Cursors.Add(id, cursor);
 	}
 
-	public void Update()
-	{
-		if (Input.GetMouseButtonDown(0))
-			Cast();
-	}
-
 	public void MoveCursor(int id, float horizontal, float vertical)
 	{
 		var cursor = Cursors[id];
 		cursor.TargetPosition = new Vector3(Screen.width / 2 + horizontal, Screen.height / 2 + vertical);
 	}
 
-	public Vector3? Cast()
+	public Vector3? GetPointPosition(int playerID)
 	{
-		var screenPosition = Input.mousePosition;
+		var cursor = Cursors[playerID];
+		var position = Cast(cursor);
+		return position;
+	}
+
+	public Vector3? Cast(Cursor cursor)
+	{
+		var screenPosition = cursor.transform.position;
 		Ray ray = Camera.main.ScreenPointToRay(screenPosition);
 		float enter = 0;
 

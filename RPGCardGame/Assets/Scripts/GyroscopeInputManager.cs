@@ -8,7 +8,7 @@ public class GyroscopeInputManager : NetworkBehaviour
 {
 	public Slider slider;
 
-	Quaternion originalRotation = Quaternion.identity;
+	public Quaternion CalibratedRotation = Quaternion.identity;
 
 	int id;
 
@@ -34,12 +34,8 @@ public class GyroscopeInputManager : NetworkBehaviour
 	{
 		while(true)
 		{
-			//sensitivity = slider.value;
 
-			if (Input.touchCount > 0)
-				originalRotation = GyroToUnity(Input.gyro.attitude);
-
-			if (originalRotation == Quaternion.identity && !SystemInfo.supportsGyroscope)
+			if (CalibratedRotation == Quaternion.identity && !SystemInfo.supportsGyroscope)
 			{
 				yield return null;
 			}
@@ -48,7 +44,7 @@ public class GyroscopeInputManager : NetworkBehaviour
 			{
 				Input.gyro.enabled = true;
 				var rotation = GyroToUnity(Input.gyro.attitude);
-				Quaternion relative = Quaternion.Inverse(rotation) * originalRotation;
+				Quaternion relative = Quaternion.Inverse(rotation) * CalibratedRotation;
 				CmdChangeCursorPosition(GetRelativeAngle(relative.eulerAngles.z), GetRelativeAngle(relative.eulerAngles.x));
 			}
 			else
@@ -77,6 +73,23 @@ public class GyroscopeInputManager : NetworkBehaviour
 		var verticalReal = vertical * (float)sensitivity;
 
 		CursorManager.Instance.MoveCursor(id, horizontalReal, verticalReal);
+	}
+
+	[Command]
+	public void CmdCastSpell(int spellID)
+	{
+		var position = CursorManager.Instance.GetPointPosition(id);
+
+		if (position == null) return;
+
+		var castInfo = new CastInfo()
+		{
+			FromPosition = Vector3.zero,
+			ToPosition = (Vector3)position,
+			Caster = null
+		};
+
+		SpellCaster.Instance.Cast(spellID, castInfo);
 	}
 
 	float GetRelativeAngle(float relativeAngle)

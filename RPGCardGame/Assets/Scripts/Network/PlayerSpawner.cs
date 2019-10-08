@@ -10,8 +10,6 @@ public class PlayerSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		Debug.Log(NetworkServer.connections.Count);
-
 		foreach(var entry in NetworkServer.connections)
 		{
 			StartCoroutine(WaitForReady(entry.Value));

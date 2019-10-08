@@ -5,17 +5,26 @@ using UnityEngine;
 
 public class Player : NetworkBehaviour
 {
-    [Command]
-	void CmdTestThing()
+	public static Player Instance;
+
+	public override void OnStartAuthority()
 	{
-		Debug.Log("Test");
+		base.OnStartAuthority();
+
+		Debug.Log("Player started");
+
+		Instance = this;
 	}
 
-	void Update()
+	void Start()
 	{
 		if (!hasAuthority) return;
 
-		if (Input.GetKeyDown(KeyCode.E))
-			CmdTestThing();
+		Instance = this;
+	}
+
+	public void CastSpell(int spellIndex)
+	{
+		GetComponent<GyroscopeInputManager>().CmdCastSpell(spellIndex);
 	}
 }

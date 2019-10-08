@@ -13,6 +13,8 @@ public class Push : TargetAction {
 	{
 		var targets = GetInputValue("Targets", this.Targets);
 
+		Debug.Log("Pushing: " + targets.Count + " entities");
+
 		for (int i = 0; i < targets.Count; i++)
 		{
 			var target = targets[i];
@@ -25,7 +27,7 @@ public class Push : TargetAction {
 			var castInfo = GetInputValue("CastInfo", this.CastInfo);
 			var radius = GetInputValue("Radius", this.Radius);
 
-			rigidbody.AddExplosionForce(amount, castInfo.FromPosition, radius);
+			rigidbody.AddExplosionForce(amount, castInfo.ToPosition, radius);
 		}
 
 		Finish();

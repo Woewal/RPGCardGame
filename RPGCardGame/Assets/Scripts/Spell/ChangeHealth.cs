@@ -12,6 +12,8 @@ public class ChangeHealth : TargetAction
 
 	public override void ExecuteAction()
 	{
+		Debug.Log("Changing health");
+
 		var targets = GetInputValue("Targets", this.Targets);
 
 		for (int i = 0; i < targets.Count; i++)

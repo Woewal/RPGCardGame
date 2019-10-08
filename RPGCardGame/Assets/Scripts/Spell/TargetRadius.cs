@@ -13,7 +13,7 @@ public class TargetRadius : TargetType
 
 		var entities = new List<Entity>();
 
-		var colliders = Physics.OverlapSphere(castInfo.FromPosition, Radius);
+		var colliders = Physics.OverlapSphere(castInfo.ToPosition, Radius);
 
 		for(var i = 0; i < colliders.Length; i++)
 		{

@@ -12,8 +12,8 @@ public class NetworkGameObjectLoader : MonoBehaviour
 	{
 		var manager = NetworkManager.singleton;
 
-		if(NetworkServer.connections.Count > 0)
-		{
+		//if(NetworkServer.connections.Count > 0)
+		//{
 			if (NetworkServer.active)
 			{
 				HostObject.SetActive(true);
@@ -24,11 +24,11 @@ public class NetworkGameObjectLoader : MonoBehaviour
 				HostObject.SetActive(false);
 				ClientObject.SetActive(true);
 			}
-		}
-		else
-		{
-			HostObject.SetActive(true);
-			ClientObject.SetActive(false);
-		}
+		//}
+		//else
+		//{
+		//		HostObject.SetActive(true);
+		//		ClientObject.SetActive(false);
+		//}
 	}
 }

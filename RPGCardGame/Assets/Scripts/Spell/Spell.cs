@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "New spell", menuName = "Spells/Spell")]
 public class Spell : NodeGraph { 
 	
 }

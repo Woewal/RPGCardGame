@@ -47,7 +47,7 @@ MonoBehaviour:
       _typeQualifiedName: CastInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: CastInfo
+      - fieldName: CastInfoOutput
         node: {fileID: 4369331977437125514}
         reroutePoints: []
       _direction: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   Targets: []
-  Radius: 2
+  Radius: 10
   CastInfo:
     FromPosition: {x: 0, y: 0, z: 0}
     ToPosition: {x: 0, y: 0, z: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
       _typeQualifiedName: CastInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: CastInfo
+      - fieldName: CastInfoOutput
         node: {fileID: 4369331977437125514}
         reroutePoints: []
       _direction: 0
@@ -180,8 +180,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Radius: 2
-  Amount: 30
+  Radius: 10
+  Amount: 600
   CastInfo:
     FromPosition: {x: 0, y: 0, z: 0}
     ToPosition: {x: 0, y: 0, z: 0}
@@ -202,6 +202,78 @@ MonoBehaviour:
   - {fileID: 4369331977437125514}
   - {fileID: -848405644777655600}
   - {fileID: -7444365725035758181}
+  - {fileID: 673307229184416712}
+--- !u!114 &673307229184416712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ad18c258621d84199725a262612e4f, type: 3}
+  m_Name: Spawn Effect
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -168, y: -376}
+  ports:
+    keys:
+    - EffectPrefab
+    - CastInfo
+    - Previous
+    - Next
+    values:
+    - _fieldName: EffectPrefab
+      _node: {fileID: 673307229184416712}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: CastInfo
+      _node: {fileID: 673307229184416712}
+      _typeQualifiedName: CastInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: CastInfoOutput
+        node: {fileID: 4369331977437125514}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Previous
+      _node: {fileID: 673307229184416712}
+      _typeQualifiedName: Action, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Next
+        node: {fileID: 4369331977437125514}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Next
+      _node: {fileID: 673307229184416712}
+      _typeQualifiedName: Action, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Previous: {fileID: 0}
+  Next: {fileID: 0}
+  EffectPrefab: {fileID: 6369933848013537706, guid: 35309a295199a1c4e948fd6f0ec07e58,
+    type: 3}
+  CastInfo:
+    FromPosition: {x: 0, y: 0, z: 0}
+    ToPosition: {x: 0, y: 0, z: 0}
+    Caster: {fileID: 0}
 --- !u!114 &4369331977437125514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +291,7 @@ MonoBehaviour:
   ports:
     keys:
     - Next
-    - CastInfo
+    - CastInfoOutput
     values:
     - _fieldName: Next
       _node: {fileID: 4369331977437125514}
@@ -229,27 +301,37 @@ MonoBehaviour:
       - fieldName: Previous
         node: {fileID: -848405644777655600}
         reroutePoints: []
+      - fieldName: Previous
+        node: {fileID: 673307229184416712}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: CastInfo
+    - _fieldName: CastInfoOutput
       _node: {fileID: 4369331977437125514}
       _typeQualifiedName: CastInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
       - fieldName: CastInfo
+        node: {fileID: -7444365725035758181}
+        reroutePoints: []
+      - fieldName: CastInfo
         node: {fileID: -848405644777655600}
         reroutePoints: []
       - fieldName: CastInfo
-        node: {fileID: -7444365725035758181}
+        node: {fileID: 673307229184416712}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
   Next: {fileID: 0}
-  CastInfo:
+  CastInfoOutput:
     FromPosition: {x: 0, y: 0, z: 0}
     ToPosition: {x: 0, y: 0, z: 0}
+    Caster: {fileID: 0}
+  CastInfo:
+    FromPosition: {x: 0, y: 0, z: 0}
+    ToPosition: {x: 2.3802087, y: 0, z: -0.2428484}
     Caster: {fileID: 0}

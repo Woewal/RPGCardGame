@@ -6,7 +6,8 @@ using XNode;
 public class SpellNode : Node {
 
 	[Output] public Action Next;
-	[Output] public CastInfo CastInfo;
+	[Output] public CastInfo CastInfoOutput;
+	public CastInfo CastInfo;
 
 	public void GoNext()
 	{
@@ -21,6 +22,11 @@ public class SpellNode : Node {
 
 	public override object GetValue(NodePort port)
 	{
-		return base.GetValue(port);
+		if (port.fieldName == "CastInfoOutput")
+		{
+			return CastInfo;
+		}
+
+		return null;
 	}
 }

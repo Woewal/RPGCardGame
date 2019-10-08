@@ -3,45 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : NetworkBehaviour
+public class InputManager : MonoBehaviour
 {
-
-	[Command]
-	void CmdProcessInput(int horizontal, int vertical)
-	{
-
-	}
+	public static InputManager Instance;
 
 	void Start()
 	{
-		if (!hasAuthority) return;
-		StartCoroutine(StartUpdating());
+		Instance = this;	
 	}
 
-	void Update()
+	public void Calibrate()
 	{
-		if (!hasAuthority) return;
-
-		if (Input.GetKeyDown(KeyCode.W))
-			transform.Translate(Vector3.forward);
-
-		if (Input.GetKeyDown(KeyCode.A))
-			transform.Translate(Vector3.left);
-
-		if (Input.GetKeyDown(KeyCode.D))
-			transform.Translate(Vector3.right);
-
-		if (Input.GetKeyDown(KeyCode.S))
-			transform.Translate(Vector3.back);
+		Player.Instance.GetComponent<GyroscopeInputManager>().CalibratedRotation = GyroToUnity(Input.gyro.attitude);
 	}
 
-	IEnumerator StartUpdating()
+	Quaternion GyroToUnity(Quaternion q)
 	{
-		while (true)
-		{
-			CmdProcessInput((int)transform.position.x, (int)transform.position.z);
-			yield return new WaitForSeconds(1);
-
-		}
+		return new Quaternion(q.x, q.y, -q.z, -q.w);
 	}
 }
