@@ -350,6 +350,7 @@ namespace Mirror
 				if(ex.ErrorCode == 10051) {
 					// Network is unreachable
 					// ignore this error
+
 				} else {
 					throw;
 				}
@@ -372,12 +373,12 @@ namespace Mirror
 				// try another method
 				RunSafe(() => ips = GetBroadcastAdressesFromHostEntry(), false);
 			}
-
+			
 			if (null == ips || ips.Length < 1)
 			{
 				// all methods failed, or there is no network interface on this device
 				// just use full-broadcast address
-				ips = new IPAddress[] { IPAddress.Broadcast };
+				ips = new IPAddress[]{IPAddress.Broadcast};
 			}
 			
 			return ips;

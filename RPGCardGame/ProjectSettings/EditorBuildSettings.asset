@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: efce1bfdee3fd684da981b2529ec468c
   - enabled: 1
+    path: Assets/Scenes/Test.unity
+    guid: 8a8e5199fd00d11478374fc6b1b806b5
+  - enabled: 1
     path: Assets/Scenes/Gyroscope test.unity
     guid: 82c7a7c50de09724ebe91790a2cd5046
   - enabled: 1

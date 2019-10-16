@@ -27,7 +27,7 @@ public class Push : TargetAction {
 			var castInfo = GetInputValue("CastInfo", this.CastInfo);
 			var radius = GetInputValue("Radius", this.Radius);
 
-			rigidbody.AddExplosionForce(amount, castInfo.ToPosition, radius);
+			CardGame.Physics.Push(rigidbody, amount, castInfo.ToPosition, radius);
 		}
 
 		Finish();

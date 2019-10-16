@@ -11,7 +11,7 @@ public class Card : MonoBehaviour
 	public bool Cast()
 	{
 		if (Player.Instance == null) return false;
-		Player.Instance.CastSpell(spellID);
+		Player.Instance.CmdCastSpell(spellID);
 		CardSpawner.Instance.SpawnRandomCard();
 		return true;
 	}

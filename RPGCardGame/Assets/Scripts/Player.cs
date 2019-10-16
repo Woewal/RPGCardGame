@@ -1,4 +1,5 @@
 ﻿using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,24 +8,49 @@ public class Player : NetworkBehaviour
 {
 	public static Player Instance;
 
+	[SyncVar]
+	public int PlayerNumber;
+
+	public System.Action OnReady;
+
 	public override void OnStartAuthority()
 	{
 		base.OnStartAuthority();
 
-		Debug.Log("Player started");
-
 		Instance = this;
+
+		CmdRegisterPlayer();
 	}
 
-	void Start()
+	[Command]
+	void CmdRegisterPlayer()
 	{
-		if (!hasAuthority) return;
-
-		Instance = this;
+		PlayerManager.Instance.AddPlayer();
+		PlayerNumber = PlayerManager.Instance.Players;
+		RpcSetPlayerNumber(PlayerManager.Instance.Players);
 	}
 
-	public void CastSpell(int spellIndex)
+	[ClientRpc]
+	void RpcSetPlayerNumber(int playerNumber)
 	{
-		GetComponent<GyroscopeInputManager>().CmdCastSpell(spellIndex);
+		OnReady?.Invoke();
+		PlayerNumber = PlayerManager.Instance.Players;
+	}
+
+	[Command]
+	public void CmdCastSpell(int spellID)
+	{
+		var position = CursorManager.Instance.GetPointPosition(PlayerNumber);
+
+		if (position == null) return;
+
+		var castInfo = new CastInfo()
+		{
+			FromPosition = Vector3.zero,
+			ToPosition = (Vector3)position,
+			Caster = null
+		};
+
+		SpellCaster.Instance.Cast(spellID, castInfo);
 	}
 }

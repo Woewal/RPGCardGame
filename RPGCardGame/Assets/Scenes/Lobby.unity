@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1295,10 +1295,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2143795856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c51a9bfa6fceaea4480e0d43f1269468, type: 3}
+  m_Script: {fileID: 11500000, guid: d0313931075e6574d8c8d4b4b4e7c3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_serverPort: 7777
+  m_serverPort: 18418
   simulateResponding: 0
   gameServerPortNumber: 7777
 --- !u!114 &2143795860
@@ -1363,6 +1363,7 @@ MonoBehaviour:
   transport: {fileID: 2143795860}
   networkAddress: 192.168.178.22
   maxConnections: 4
+  authenticator: {fileID: 0}
   playerPrefab: {fileID: 0}
   autoCreatePlayer: 0
   playerSpawnMethod: 0
@@ -1377,7 +1378,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2143795856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72ca8af92fb13945991dd6a0020feea, type: 3}
+  m_Script: {fileID: 11500000, guid: 32a6e4c38b88b2a45b94ac3a0adb4346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   offsetX: 5

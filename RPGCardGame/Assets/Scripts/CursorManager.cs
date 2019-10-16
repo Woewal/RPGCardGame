@@ -20,11 +20,13 @@ public class CursorManager : MonoBehaviour
 	public void RegisterPlayer(int id)
 	{
 		var cursor = Instantiate(CursorPrefab, CursorParent);
+		Debug.Log("Registered cursor id: " + id);
 		Cursors.Add(id, cursor);
 	}
 
 	public void MoveCursor(int id, float horizontal, float vertical)
 	{
+		Debug.Log(id);
 		var cursor = Cursors[id];
 		cursor.TargetPosition = new Vector3(Screen.width / 2 + horizontal, Screen.height / 2 + vertical);
 	}
