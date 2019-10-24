@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CursorManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CursorManager : MonoBehaviour
 
 	Camera camera;
 	Plane plane = new Plane(new Vector3(0, 1, 0), 0);
+	public PlayerColors PlayerColors;
 	public Cursor CursorPrefab;
 	public RectTransform CursorParent;
 	public Dictionary<int, Cursor> Cursors = new Dictionary<int, Cursor>();
@@ -20,6 +22,7 @@ public class CursorManager : MonoBehaviour
 	public void RegisterPlayer(int id)
 	{
 		var cursor = Instantiate(CursorPrefab, CursorParent);
+		cursor.GetComponent<Image>().color = PlayerColors.Colors[id];
 		Debug.Log("Registered cursor id: " + id);
 		Cursors.Add(id, cursor);
 	}

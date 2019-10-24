@@ -35,6 +35,7 @@ public class Player : NetworkBehaviour
 	{
 		OnReady?.Invoke();
 		PlayerNumber = PlayerManager.Instance.Players;
+		ClientPlayerManager.Instance.Initiate(PlayerNumber);
 	}
 
 	[Command]
