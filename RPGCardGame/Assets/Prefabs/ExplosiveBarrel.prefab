@@ -211,11 +211,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2521742707236392196}
     m_Modifications:
-    - target: {fileID: 4751682486153470159, guid: 8486b5082c40bb54f87b579366ca66ef,
-        type: 3}
-      propertyPath: m_Name
-      value: HealthBar
-      objectReference: {fileID: 0}
     - target: {fileID: 4751682486153470158, guid: 8486b5082c40bb54f87b579366ca66ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -284,12 +279,12 @@ PrefabInstance:
     - target: {fileID: 4751682486153470158, guid: 8486b5082c40bb54f87b579366ca66ef,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4751682486153470158, guid: 8486b5082c40bb54f87b579366ca66ef,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4751682486153470158, guid: 8486b5082c40bb54f87b579366ca66ef,
         type: 3}
@@ -320,6 +315,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751682486153470159, guid: 8486b5082c40bb54f87b579366ca66ef,
+        type: 3}
+      propertyPath: m_Name
+      value: HealthBar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8486b5082c40bb54f87b579366ca66ef, type: 3}

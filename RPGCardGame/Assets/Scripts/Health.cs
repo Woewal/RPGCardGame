@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
 {
 	public int MaxHealth;
 	[HideInInspector] public float CurrentHealth { get; private set; }
-	[SerializeField] HealthBar healthBar;
+	[SerializeField] AmountBar healthBar;
 	public UnityEvent OnDeath = new UnityEvent();
 
 	private void Start()
@@ -41,7 +41,7 @@ public class Health : MonoBehaviour
 		}
 
 		if (healthBar != null)
-			healthBar.UpdateHealthBar((float)CurrentHealth / (float)MaxHealth);
+			healthBar.UpdateBar((float)CurrentHealth / (float)MaxHealth);
 	}
 
 	void OnCollisionEnter(Collision collision)

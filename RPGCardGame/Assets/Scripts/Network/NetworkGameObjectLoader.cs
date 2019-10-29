@@ -8,11 +8,18 @@ public class NetworkGameObjectLoader : MonoBehaviour
 	public GameObject HostObject;
 	public GameObject ClientObject;
 
+	[SerializeField] bool test;
+
 	void Start()
 	{
 		var manager = NetworkManager.singleton;
 
-		if (NetworkServer.connections.Count > 0)
+		if(test)
+		{
+			HostObject.SetActive(true);
+			ClientObject.SetActive(false);
+		}
+		else
 		{
 			if (NetworkServer.active)
 			{
@@ -25,10 +32,6 @@ public class NetworkGameObjectLoader : MonoBehaviour
 				ClientObject.SetActive(true);
 			}
 		}
-		else
-		{
-			HostObject.SetActive(true);
-			ClientObject.SetActive(false);
-		}
+		
 	}
 }
