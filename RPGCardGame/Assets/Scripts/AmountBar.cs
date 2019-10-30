@@ -14,6 +14,7 @@ public class AmountBar : MonoBehaviour
 
 	public void UpdateBar(float percent)
 	{
+		Debug.Log(percent);
 		bar.fillAmount = percent;
 	}
 }

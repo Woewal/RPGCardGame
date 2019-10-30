@@ -14,11 +14,12 @@ public class Energy : MonoBehaviour
 			return currentEnergy == 1;
 		}
 	}
-
 	[SerializeField] AmountBar energyBar;
 
-	public void Update()
+	void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.E)) Consume();
+
 		currentEnergy += rechargeRate * Time.deltaTime;
 
 		if (currentEnergy > 1)
@@ -27,8 +28,9 @@ public class Energy : MonoBehaviour
 		energyBar.UpdateBar(currentEnergy);
 	}
 
-	public void Reset()
+	public void Consume()
 	{
-
+		currentEnergy = 0;
+		energyBar.UpdateBar(currentEnergy);
 	}
 }
