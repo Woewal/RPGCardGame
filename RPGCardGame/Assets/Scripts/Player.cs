@@ -25,33 +25,30 @@ public class Player : NetworkBehaviour
 	[Command]
 	void CmdRegisterPlayer()
 	{
-		PlayerManager.Instance.AddPlayer();
-		PlayerNumber = PlayerManager.Instance.Players;
-		RpcSetPlayerNumber(PlayerManager.Instance.Players);
+		PlayerManager.Instance.AddPlayer(this);
 	}
 
 	[ClientRpc]
-	void RpcSetPlayerNumber(int playerNumber)
+	public void RpcSetPlayerReady(int playerNumber)
 	{
 		OnReady?.Invoke();
-		PlayerNumber = PlayerManager.Instance.Players;
 		ClientPlayerManager.Instance.Initiate(PlayerNumber);
 	}
 
 	[Command]
 	public void CmdCastSpell(int spellID)
 	{
-		var position = CursorManager.Instance.GetPointPosition(PlayerNumber);
+		//var position = CursorManager.Instance.GetPointPosition(PlayerNumber);
 
-		if (position == null) return;
+		//if (position == null) return;
 
-		var castInfo = new CastInfo()
-		{
-			FromPosition = Vector3.zero,
-			ToPosition = (Vector3)position,
-			Caster = null
-		};
+		//var castInfo = new CastInfo()
+		//{
+		//	FromPosition = Vector3.zero,
+		//	ToPosition = (Vector3)position,
+		//	Caster = null
+		//};
 
-		SpellCaster.Instance.Cast(spellID, castInfo);
+		//SpellCaster.Instance.Cast(spellID, castInfo);
 	}
 }

@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class CursorManager : MonoBehaviour
 {
 	public static CursorManager Instance;
-
-	Camera camera;
-	Plane plane = new Plane(new Vector3(0, 1, 0), 0);
 	public PlayerColors PlayerColors;
 	public Cursor CursorPrefab;
 	public RectTransform CursorParent;
@@ -16,43 +13,37 @@ public class CursorManager : MonoBehaviour
 
 	void Awake()
 	{
-		Instance = this;	
+		Instance = this;
 	}
 
-	public void RegisterPlayer(int id)
+	void Start()
+	{
+		PlayerManager.Instance.OnPlayerAdded += RegisterCursor;
+	}
+
+	public void RegisterCursor(PlayerInfo player)
 	{
 		var cursor = Instantiate(CursorPrefab, CursorParent);
-		cursor.GetComponent<Image>().color = PlayerColors.Colors[id];
-		Debug.Log("Registered cursor id: " + id);
-		Cursors.Add(id, cursor);
-	}
+		cursor.GetComponent<Image>().color = PlayerColors.Colors[player.Number - 1];
+		Debug.Log("Registered cursor id: " + player.Number);
+		Cursors.Add(player.Number, cursor);
 
-	public void MoveCursor(int id, float horizontal, float vertical)
-	{
-		Debug.Log(id);
-		var cursor = Cursors[id];
-		cursor.TargetPosition = new Vector3(Screen.width / 2 + horizontal, Screen.height / 2 + vertical);
-	}
-
-	public Vector3? GetPointPosition(int playerID)
-	{
-		var cursor = Cursors[playerID];
-		var position = Cast(cursor);
-		return position;
-	}
-
-	public Vector3? Cast(Cursor cursor)
-	{
-		var screenPosition = cursor.transform.position;
-		Ray ray = Camera.main.ScreenPointToRay(screenPosition);
-		float enter = 0;
-
-		if(plane.Raycast(ray, out enter))
+		player.Cursor = cursor;
+		player.Input.OnGyroscopeUpdate += (amount) =>
 		{
-			Vector3 hitPoint = ray.GetPoint(enter);
-			return hitPoint;
-		}
+			MoveCursor(player.Cursor, amount);
+		};
+		cursor.OnCast += (position) => { Debug.Log("Player (" + player.Number + ") clicked at position (" + position + ")!"); };
+		player.Input.OnPressButton += () =>
+		{
+			var position = cursor.GetWorldPosition();
+			if (position != null)
+				player.Cursor.OnCast?.Invoke((Vector3)position);
+		};
+	}
 
-		return null;
+	public void MoveCursor(Cursor cursor, Vector2 amount)
+	{
+		cursor.TargetPosition = new Vector3(Screen.width / 2 + amount.x, Screen.height / 2 + amount.y);
 	}
 }
