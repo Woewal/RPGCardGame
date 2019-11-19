@@ -49,9 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5a05a37be03dd4b92f1520d1919316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: {fileID: 0}
+  Health: {fileID: 2521742707236392197}
   Character: {fileID: 0}
   Rigidbody: {fileID: 2521742707236392198}
+  PlayerCharacter: {fileID: 0}
 --- !u!136 &2521742707236392195
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -106,8 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34928528f52cad540ac95a7af98b580d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 10
-  force: 600
+  radius: 20
+  force: 2770.79
   explosionEffect: {fileID: 6369933848013537706, guid: 35309a295199a1c4e948fd6f0ec07e58,
     type: 3}
 --- !u!54 &2521742707236392198

@@ -7,6 +7,7 @@ public class PlayerInput : NetworkBehaviour
 {
 	public Action<Vector2> OnGyroscopeUpdate;
 	public System.Action OnPressButton;
+	public System.Action OnReleaseButton;
 
 	public override void OnStartAuthority()
 	{
@@ -27,6 +28,12 @@ public class PlayerInput : NetworkBehaviour
 	public void CmdPressButton()
 	{
 		OnPressButton?.Invoke();
+	}
+
+	[Command]
+	public void CmdReleaseButton()
+	{
+		OnReleaseButton?.Invoke();
 	}
 
 

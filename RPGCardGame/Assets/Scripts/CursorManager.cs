@@ -34,7 +34,7 @@ public class CursorManager : MonoBehaviour
 			MoveCursor(player.Cursor, amount);
 		};
 		cursor.OnCast += (position) => { Debug.Log("Player (" + player.Number + ") clicked at position (" + position + ")!"); };
-		player.Input.OnPressButton += () =>
+		player.Input.OnReleaseButton += () =>
 		{
 			var position = cursor.GetWorldPosition();
 			if (position != null)

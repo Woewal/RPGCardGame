@@ -14,14 +14,24 @@ public class Exploder : MonoBehaviour
 
 		for (var i = 0; i < colliders.Length; i++)
 		{
-			var rigidbody = colliders[i].GetComponent<Rigidbody>();
+			var entity = colliders[i].GetComponent<Entity>();
 
-			if (rigidbody == null) continue;
+			if (entity == null || entity.Rigidbody == null) continue;
 
-			CardGame.Physics.Push(rigidbody, force, transform.position, radius);
+			if(entity.PlayerCharacter != null)
+			{
+				entity.PlayerCharacter.Movement.RemoveControl();
+			}
+
+			CardGame.Physics.Push(entity.Rigidbody, force, transform.position, radius);
 		}
 
 		var explosion = Instantiate(explosionEffect);
 		explosion.transform.position = transform.position;
+	}
+
+	void OnDrawGizmosSelected()
+	{
+		Gizmos.DrawWireSphere(transform.position, radius);	
 	}
 }

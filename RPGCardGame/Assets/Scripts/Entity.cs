@@ -7,10 +7,5 @@ public class Entity : MonoBehaviour
 	public Health Health;
 	public Character Character;
 	public Rigidbody Rigidbody;
-
-	void Start()
-	{
-		Health = GetComponent<Health>();
-		Character = GetComponent<Character>();
-	}
+	public PlayerCharacter PlayerCharacter;
 }
