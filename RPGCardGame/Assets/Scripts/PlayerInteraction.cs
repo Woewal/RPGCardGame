@@ -20,7 +20,7 @@ public class PlayerInteraction : MonoBehaviour
 		var pickup = other.GetComponent<Pickup>();
 
 		if (pickup == null) return;
-
+		pickup.OnPickup?.Invoke();
 		Pickup(pickup.PickupPrefab);
 		Destroy(pickup.gameObject);
 	}
@@ -51,13 +51,15 @@ public class PlayerInteraction : MonoBehaviour
 	void StartAim()
 	{
 		isAiming = true;
-		lineRenderer.enabled = true;
+		if (lineRenderer != null)
+			lineRenderer.enabled = true;
 	}
 
 	void StopAim()
 	{
 		isAiming = false;
-		lineRenderer.enabled = false;
+		if(lineRenderer != null)
+			lineRenderer.enabled = false;
 	}
 
 	void Throw()

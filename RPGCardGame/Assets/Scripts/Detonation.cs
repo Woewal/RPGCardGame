@@ -22,7 +22,8 @@ public class Detonation : MonoBehaviour
 		while(timeLeft > 0)
 		{
 			timeLeft--;
-			text.text = timeLeft.ToString();
+			if(text != null)
+				text.text = timeLeft.ToString();
 			yield return new WaitForSeconds(1f);
 		}
 

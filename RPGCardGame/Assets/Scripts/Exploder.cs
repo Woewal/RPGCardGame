@@ -6,6 +6,8 @@ public class Exploder : MonoBehaviour
 {
 	[SerializeField] float radius;
 	[SerializeField] float force;
+	const float Damage = 10;
+	[SerializeField] float damageMultiplier = 1;
 	[SerializeField] GameObject explosionEffect;
 
     public void Explode()
@@ -14,6 +16,8 @@ public class Exploder : MonoBehaviour
 
 		for (var i = 0; i < colliders.Length; i++)
 		{
+			if (colliders[i].gameObject == gameObject) continue; 
+
 			var entity = colliders[i].GetComponent<Entity>();
 
 			if (entity == null || entity.Rigidbody == null) continue;
@@ -21,6 +25,13 @@ public class Exploder : MonoBehaviour
 			if(entity.PlayerCharacter != null)
 			{
 				entity.PlayerCharacter.Movement.RemoveControl();
+			}
+
+			var health = entity.Health;
+
+			if(health != null)
+			{
+				health.ChangeHealth(-(entity.transform.position - transform.position).magnitude * Damage); 
 			}
 
 			CardGame.Physics.Push(entity.Rigidbody, force, transform.position, radius);

@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
 
 	public List<PlayerInfo> Players = new List<PlayerInfo>();
 	public Action<PlayerInfo> OnPlayerAdded;
+	public PlayerColors PlayerColors;
 
 	void Awake()
 	{
@@ -21,7 +22,8 @@ public class PlayerManager : MonoBehaviour
 		{
 			Player = player,
 			Input = player.GetComponent<PlayerInput>(),
-			Number = Players.Count + 1
+			Number = Players.Count + 1,
+			Color = PlayerColors.Colors[Players.Count]
 		};
 
 		player.RpcSetPlayerReady(playerInfo.Number);
@@ -37,4 +39,5 @@ public class PlayerInfo
 	public PlayerInput Input;
 	public int Number;
 	public Cursor Cursor;
+	public Color Color;
 }

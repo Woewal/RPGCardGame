@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4285755191562820561
+--- !u!1001 &921543566726198407
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 3245761497655828502, guid: 1a0aeec84818db54a95ebc94bec938e6,
         type: 3}
       propertyPath: m_Name
-      value: BombPickup
+      value: MagneticPole
       objectReference: {fileID: 0}
     - target: {fileID: 3245761497655828501, guid: 1a0aeec84818db54a95ebc94bec938e6,
         type: 3}
@@ -71,24 +71,18 @@ PrefabInstance:
         type: 3}
       propertyPath: PickupPrefab
       value: 
-      objectReference: {fileID: 1082681811873111372, guid: f410af7d822e99f49825d6cd919af18c,
+      objectReference: {fileID: 1477854344424583409, guid: 45bb88cfe13ecfe42bb45121f39caba7,
         type: 3}
-    - target: {fileID: 3245761499083424996, guid: 1a0aeec84818db54a95ebc94bec938e6,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 8325544214411080167, guid: 1a0aeec84818db54a95ebc94bec938e6,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -849867405023671905, guid: c56fa45dfdd67174e84839d6318fdc58,
+      objectReference: {fileID: -5453025269540080298, guid: 1826c54ab6d017c41bd3a5f9820ea2db,
         type: 3}
     - target: {fileID: 2357299266366213406, guid: 1a0aeec84818db54a95ebc94bec938e6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f5fc78715e388f144907e3d1f2c9e869, type: 2}
-    m_RemovedComponents:
-    - {fileID: 7737958743891294165, guid: 1a0aeec84818db54a95ebc94bec938e6, type: 3}
+      objectReference: {fileID: 2100000, guid: f40dde5e16d2da542b2156f509733ac7, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a0aeec84818db54a95ebc94bec938e6, type: 3}

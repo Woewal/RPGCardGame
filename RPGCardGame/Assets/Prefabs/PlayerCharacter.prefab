@@ -250,7 +250,7 @@ MonoBehaviour:
   maxRange: 10
   pickupHolder: {fileID: 9216551111984128168}
   playerCharacter: {fileID: -3610731374349405065}
-  force: 10
+  force: 15
   lineRenderer: {fileID: 6544156391287239410}
 --- !u!135 &6255808486642033858
 SphereCollider:
@@ -431,6 +431,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Movement: {fileID: -5007179324097302598}
+  MeshRenderers:
+  - {fileID: 8049061788528933746}
+  - {fileID: 7963846568609557968}
+  - {fileID: 293388273357310344}
+  - {fileID: 3746119468130213603}
+  - {fileID: 6700865260101086112}
+  - {fileID: 7581681827738530308}
 --- !u!114 &-5007179324097302598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,7 +450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa495398a30b7e44ab971385a1bf1377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 3
+  maxSpeed: 4.5
   maxRange: 4
   rotationIndicator: {fileID: 5703654090566875113}
   slowDownThreshold: 0.5
@@ -488,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb6dcdb764493646b28840dd1be3b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 200
   healthBar: {fileID: 4320050116766974784}
   OnDeath:
     m_PersistentCalls:
@@ -500,11 +507,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8791792535662450529}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 14211c17ecaa96b4caade434707e1a2b,
-        type: 3}
-      propertyPath: m_Name
-      value: basicCharacter
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 14211c17ecaa96b4caade434707e1a2b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -575,6 +577,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 9.923428
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 14211c17ecaa96b4caade434707e1a2b,
+        type: 3}
+      propertyPath: m_Name
+      value: basicCharacter
+      objectReference: {fileID: 0}
     - target: {fileID: -139352455604996665, guid: 14211c17ecaa96b4caade434707e1a2b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -607,9 +614,45 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f938b679ce6779d45b9226d9c505b98d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14211c17ecaa96b4caade434707e1a2b, type: 3}
+--- !u!137 &3746119468130213603 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5331799564502180524, guid: 14211c17ecaa96b4caade434707e1a2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8791792534128933967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &7581681827738530308 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1384069400911154763, guid: 14211c17ecaa96b4caade434707e1a2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8791792534128933967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4573419114323122005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 14211c17ecaa96b4caade434707e1a2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8791792534128933967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8049061788528933746 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7658727718963361987, guid: 14211c17ecaa96b4caade434707e1a2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8791792534128933967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &7963846568609557968 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7743942891889749601, guid: 14211c17ecaa96b4caade434707e1a2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8791792534128933967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &293388273357310344 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -139352455604996665, guid: 14211c17ecaa96b4caade434707e1a2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8791792534128933967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6700865260101086112 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2809394909721335791, guid: 14211c17ecaa96b4caade434707e1a2b,
     type: 3}
   m_PrefabInstance: {fileID: 8791792534128933967}
   m_PrefabAsset: {fileID: 0}

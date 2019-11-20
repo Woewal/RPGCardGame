@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
 	[HideInInspector] public float CurrentHealth { get; private set; }
 	[SerializeField] AmountBar healthBar;
 	public UnityEvent OnDeath = new UnityEvent();
+	bool isDead;
 
 	private void Start()
 	{
@@ -37,6 +38,8 @@ public class Health : MonoBehaviour
 		else if (CurrentHealth < 0)
 		{
 			CurrentHealth = 0;
+			if (isDead) return;
+			isDead = true;
 			OnDeath?.Invoke();
 		}
 
@@ -46,6 +49,8 @@ public class Health : MonoBehaviour
 
 	void OnCollisionEnter(Collision collision)
 	{
-		ChangeHealth(-collision.relativeVelocity.magnitude * 2);
+		var damageAmount = -collision.relativeVelocity.magnitude;
+		if (damageAmount > -6.5f) return;
+		ChangeHealth(damageAmount);
 	}
 }
