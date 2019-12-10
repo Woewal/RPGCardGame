@@ -6,16 +6,16 @@ public class PlayerCharacter : MonoBehaviour
 {
 	public PlayerCharacterMovement Movement;
 	public PlayerInfo Info;
-	public List<SkinnedMeshRenderer> MeshRenderers;
+	public List<Renderer> MeshRenderers;
 
     public void Initiate(PlayerInfo player)
 	{
 		Movement = GetComponent<PlayerCharacterMovement>();
 		Movement.Initiate(player);
 		Info = player;
-		//foreach(var meshRenderer in MeshRenderers)
-		//{
-		//	meshRenderer.material.color = player.Color;
-		//}
+		for (int i = 0; i < MeshRenderers.Count; i++)
+		{
+			MeshRenderers[i].material.SetColor("_BaseColor", player.Color);
+		}
 	}
 }

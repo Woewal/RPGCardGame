@@ -5088,7 +5088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1a4e48e8c78e2429e5665389cff73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seconds: 5
+  seconds: 4
   onDetonation:
     m_PersistentCalls:
       m_Calls:
@@ -5129,6 +5129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 4
   force: 50000
+  damageMultiplier: 1
   explosionEffect: {fileID: 6369933848013537706, guid: 35309a295199a1c4e948fd6f0ec07e58,
     type: 3}
 --- !u!1001 &4202782392255123194

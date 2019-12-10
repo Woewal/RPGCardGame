@@ -32,7 +32,9 @@ public class Player : NetworkBehaviour
 	public void RpcSetPlayerReady(int playerNumber)
 	{
 		OnReady?.Invoke();
-		ClientPlayerManager.Instance.Initiate(PlayerNumber);
+		if (!hasAuthority) return;
+		Debug.Log(playerNumber);
+		ClientPlayerManager.Instance.Initiate(playerNumber);
 	}
 
 	[Command]

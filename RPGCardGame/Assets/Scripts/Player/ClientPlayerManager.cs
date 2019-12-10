@@ -17,6 +17,6 @@ public class ClientPlayerManager : MonoBehaviour
 
 	public void Initiate(int id)
 	{
-		backgroundImage.color = playerColors.Colors[id];
+		backgroundImage.color = playerColors.Colors[id - 1];
 	}
 }
