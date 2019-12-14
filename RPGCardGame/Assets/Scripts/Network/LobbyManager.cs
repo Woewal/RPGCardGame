@@ -40,7 +40,7 @@ public class LobbyManager : NetworkBehaviour
 
 	public void StartGame()
 	{
-		NetworkManager.singleton.ServerChangeScene("main");
+		NetworkManager.singleton.ServerChangeScene("TankMinigame");
 	}
 
 	string GetLocalIPAddress()

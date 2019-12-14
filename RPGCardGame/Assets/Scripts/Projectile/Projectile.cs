@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
 
 	void Update()
 	{
-		transform.Translate(transform.forward * speed * Time.deltaTime);
+		transform.position += transform.forward * speed * Time.deltaTime;
 	}
 
 	void OnCollisionEnter(Collision collision)

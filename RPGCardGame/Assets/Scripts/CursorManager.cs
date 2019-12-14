@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class CursorManager : MonoBehaviour
 {
 	public static CursorManager Instance;
-	public PlayerColors PlayerColors;
 	public Cursor CursorPrefab;
 	public RectTransform CursorParent;
 	public Dictionary<int, Cursor> Cursors = new Dictionary<int, Cursor>();
@@ -18,13 +17,13 @@ public class CursorManager : MonoBehaviour
 
 	void Start()
 	{
-		PlayerManager.Instance.OnPlayerAdded += RegisterCursor;
+		//PlayerManager.Instance.OnPlayerAdded += RegisterCursor;
 	}
 
 	public void RegisterCursor(PlayerInfo player)
 	{
 		var cursor = Instantiate(CursorPrefab, CursorParent);
-		cursor.GetComponent<Image>().color = PlayerColors.Colors[player.Number - 1];
+		cursor.GetComponent<Image>().color = player.Color;
 		Debug.Log("Registered cursor id: " + player.Number);
 		Cursors.Add(player.Number, cursor);
 

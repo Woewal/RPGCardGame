@@ -1,29 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerCharacterSpawner : MonoBehaviour
 {
 	[SerializeField] PlayerCharacter playerCharacterPrefab;
-	
+	[SerializeField] List<GameObject> spawnPoints;
+
 	void Start()
 	{
-		PlayerManager.Instance.OnPlayerAdded += EnableSpawning;
+		PlayerManager.Instance.OnPlayerAdded += Spawn;
 	}
 
-	void EnableSpawning(PlayerInfo player)
+	void Spawn(PlayerInfo playerInfo)
 	{
-		StartCoroutine(WaitPlayerReady(player));
-	}
-
-	IEnumerator WaitPlayerReady(PlayerInfo player)
-	{
-		while (player.Cursor == null) yield return null;
-
-		player.Cursor.OnCast = (position) =>
-		{
-			var character = Instantiate(playerCharacterPrefab);
-			character.transform.position = position;
-			character.Initiate(player);
-		};
+		var playerCharacter = Instantiate(playerCharacterPrefab);
+		transform.position = spawnPoints[PlayerManager.Instance.Players.Count - 1].transform.position;
+		transform.rotation = spawnPoints[PlayerManager.Instance.Players.Count - 1].transform.rotation;
+		playerCharacter.Initiate(playerInfo);
+		CursorManager.Instance.RegisterCursor(playerInfo);
 	}
 }

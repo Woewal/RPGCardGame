@@ -22,11 +22,6 @@ public class Exploder : MonoBehaviour
 
 			if (entity == null || entity.Rigidbody == null) continue;
 
-			if(entity.PlayerCharacter != null)
-			{
-				entity.PlayerCharacter.Movement.RemoveControl();
-			}
-
 			var health = entity.Health;
 
 			if(health != null)
