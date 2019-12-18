@@ -20,7 +20,7 @@ public class Cursor : MonoBehaviour
 	public Vector3? GetWorldPosition()
 	{
 		var screenPosition = transform.position;
-		Ray ray = Camera.main.ScreenPointToRay(screenPosition);
+		Ray ray = CameraSingleton.Instance.GetComponent<Camera>().ScreenPointToRay(screenPosition);
 		float enter = 0;
 
 		if (plane.Raycast(ray, out enter))

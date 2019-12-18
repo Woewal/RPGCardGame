@@ -9,7 +9,9 @@ public class TankCannon : MonoBehaviour
 	[SerializeField] GameObject projectilePrefab;
 	[SerializeField] GameObject muzzleFlashPrefab;
 	[SerializeField] Transform cannonEndTransform;
+	[SerializeField] float reloadSpeed;
 
+	float timeSinceLastShot;
 	bool isAiming;
 	Cursor cursor;
 
@@ -22,12 +24,15 @@ public class TankCannon : MonoBehaviour
 		playerCharacter.Info.Input.OnReleaseButton += () =>
 		{
 			isAiming = false;
-			Shoot();
+			if(timeSinceLastShot > reloadSpeed)
+				Shoot();
 		};
 	}
 
 	void Update()
 	{
+		timeSinceLastShot += Time.deltaTime;
+
 		if (!isAiming) return;
 
 		if (cursor == null)
@@ -46,8 +51,9 @@ public class TankCannon : MonoBehaviour
 		var bullet = Instantiate(projectilePrefab);
 		bullet.transform.position = cannonEndTransform.transform.position;
 		bullet.transform.rotation = cannonEndTransform.transform.rotation;
-		var muzzleFlash = Instantiate(muzzleFlashPrefab, transform);
+		var muzzleFlash = Instantiate(muzzleFlashPrefab);
 		muzzleFlash.transform.position = cannonEndTransform.transform.position;
 		muzzleFlash.transform.rotation = cannonEndTransform.transform.rotation;
+		timeSinceLastShot = 0;
 	}
 }

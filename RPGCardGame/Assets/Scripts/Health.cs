@@ -35,7 +35,7 @@ public class Health : MonoBehaviour
 
 		if (CurrentHealth > MaxHealth)
 			CurrentHealth = MaxHealth;
-		else if (CurrentHealth < 0)
+		else if (CurrentHealth <= 0)
 		{
 			CurrentHealth = 0;
 			if (isDead) return;

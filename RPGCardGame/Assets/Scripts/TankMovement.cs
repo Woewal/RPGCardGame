@@ -51,7 +51,5 @@ public class TankMovement : MonoBehaviour
 		
 		var newRotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, rotationSpeed * Time.deltaTime, 0.0f);
 		transform.rotation = Quaternion.LookRotation(new Vector3(newRotation.x, 0, newRotation.z));
-
-		Debug.Log(velocity);
 	}
 }
